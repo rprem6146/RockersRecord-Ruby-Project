@@ -1,0 +1,74 @@
+doctype html
+html lang="en"
+  head
+    meta charset="utf-8"
+    meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    title= content_for?(:title) ? yield(:title) : "Rockers Records"
+    = csrf_meta_tags
+    = stylesheet_link_tag "application", media: "all"
+    = favicon_link_tag 'favicon.ico'
+    = javascript_include_tag "application"
+    /! Le HTML5 shim, for IE6-8 support of HTML elements
+    /[if lt IE 9]
+      = javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"
+
+  body
+    .navbar.navbar-default.navbar-static-top
+      .container
+        button.navbar-toggle type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse"
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        a.navbar-brand href="/"
+          = image_tag 'alamorecords.png'
+        a.navbar-brand href="/" Rockers Records
+        .navbar-collapse.collapse.navbar-responsive-collapse
+          ul.nav.navbar-nav
+            li= link_to "Publishers", publishers_path
+            li= link_to "Albums", albums_path
+            li= link_to "Artists", artists_path
+            li= link_to "Songs", songs_path
+            li= link_to get_last_artist.name, get_last_artist
+
+    .container
+      .row
+        - if content_for?(:sidebar)
+          .col-md-9
+            = bootstrap_flash
+            = yield
+          .col-md-3
+            = yield(:sidebar)
+        - else
+          .col-md-12
+            = bootstrap_flash
+            = yield
+
+    footer
+      .container
+        .row
+          .col-md-2
+            ul
+              li LATEST
+              -Album.recent.each do |album|
+                li= link_to album.name, album
+          .col-md-2
+            ul
+              li OUR TEAM
+              li= link_to "Daren", "/"
+              li= link_to "Jim", "/"
+              li= link_to "Peter", "/"
+              li= link_to "Brandt", "/"
+              li= link_to "Sean", "/"
+          .col-md-2
+            ul
+              li SUPPORT
+              li= link_to "Online Support", "/"
+              li= link_to "Chat Now", "/"
+          .col-md-6
+            ul
+              li ABOUT
+              li Alamo Records sells the hottest vinyl tracks at discount prices to save you gas in the tank and cash in the bank.
+    
+    div.gutter
+            

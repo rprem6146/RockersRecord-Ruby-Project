@@ -1,0 +1,35 @@
+.page-header
+  h1
+    .pull-right
+      => link_to 'Back', albums_path, class: 'btn btn-default'
+      => link_to 'Edit', [:edit, @album], class: 'btn btn-default'
+      = link_to 'Delete', @album, method: "delete", data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
+    => @album.name
+    small.text-muted album
+
+dl.dl-horizontal
+  dt Name
+  dd= @album.name
+
+  dt Publisher
+  dd= link_to @album.publisher.name, @album.publisher
+
+  dt Released
+  dd= @album.released_on
+
+hr
+
+
+.page-header
+  h2 Songs
+  
+dl.dl-horizontal
+  dt.text-muted TRACK #
+  dd.text-muted NAME
+  
+  - @album.songs.each_with_index do |song, index|
+    dt= index+1
+    dd= link_to song.name, song
+  
+= content_for :sidebar
+  img.img-thumbnail(src=@album.cover_art)

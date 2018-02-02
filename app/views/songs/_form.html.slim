@@ -1,0 +1,20 @@
+= form_for @song, html: { class: "form form-horizontal song" } do |f|
+  .form-group
+    = f.label :name, class: 'control-label col-lg-2'
+    .col-lg-10
+      = f.text_field :name, class: 'form-control'
+      = f.error_span(:name)
+  .form-group
+    = f.label :album_id, class: 'control-label col-lg-2'
+    .col-lg-10
+      = f.collection_select(:album_id, Album.all, :id, :name, { prompt: "Select an album..." }, class: 'form-control')
+      = f.error_span(:album_id)
+  .form-group
+    = f.label :artist_id, class: 'control-label col-lg-2'
+    .col-lg-10
+      = f.collection_select(:artist_id, Artist.all, :id, :name, { prompt: "Select an artist..."}, class: 'form-control')
+      = f.error_span(:artist_id)
+  .form-group
+    .col-lg-offset-2.col-lg-10
+      => f.submit nil, class: 'btn btn-primary'
+      = link_to 'Cancel', songs_path, class: 'btn'

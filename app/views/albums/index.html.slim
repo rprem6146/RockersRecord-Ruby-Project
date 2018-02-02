@@ -1,0 +1,18 @@
+.page-header
+  h1
+    .pull-right
+      = link_to "New", new_album_path, class: 'btn btn-primary'
+    | Albums
+  
+table.table.table-striped
+  thead
+    tr
+      th name
+      th publisher
+      th released
+  tbody
+    - @albums.each do |album|
+      tr
+        td= link_to album.name, album
+        td= album.publisher.name
+        td= album.released_on

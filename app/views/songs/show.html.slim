@@ -1,0 +1,28 @@
+.page-header
+  h1
+    .pull-right    
+      = link_to songs_path, class: 'btn btn-default' do
+        i.fa.fa-reply>
+        span.hidden-xs Back
+      '
+      = link_to [:edit, @song], class: 'btn btn-default' do
+        i.fa.fa-pencil>
+        span.hidden-xs Edit
+      '
+      = link_to @song, method: "delete", data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' do
+        i.fa.fa-trash-o>
+        span.hidden-xs Delete
+    = @song.name
+    small.text-muted.hidden-xs< song
+
+dl.dl-horizontal
+  dt Name
+  dd= @song.name
+
+  dt Album
+  dd= link_to @song.album.name, @song.album
+
+  dt Artist
+  dd= link_to @song.artist.name, @song.artist
+
+hr

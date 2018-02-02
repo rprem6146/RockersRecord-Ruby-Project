@@ -1,0 +1,26 @@
+.page-header
+  h1
+    .pull-right
+      = link_to 'Back', artists_path, class: 'btn btn-default'
+      '
+      = link_to 'Edit', [:edit, @artist], class: 'btn btn-default'
+      '
+      = link_to 'Delete', @artist, method: "delete", data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
+    => @artist.name
+    small.text-muted artist
+
+dl.dl-horizontal
+  dt Name
+  dd= @artist.name
+
+hr
+
+.page-header
+  h2 Albums
+
+dl.dl-horizontal
+  dt NAME
+  dd RELEASED
+  - @artist.albums.uniq.each do |album|
+    dt= link_to album.name, album
+    dd= album.released_on

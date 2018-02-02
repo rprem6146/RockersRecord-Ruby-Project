@@ -1,0 +1,15 @@
+.page-header
+  h1
+    .pull-right
+      = link_to "New", new_artist_path, class: 'btn btn-primary'
+    | Artists
+  
+
+.row
+  - @artists.each do |artist|
+    .col-sm-3
+      - if artist.image_url
+        = link_to image_tag(artist.image_url,class: "img-thumbnail"), artist, remote: true
+      - else
+        = link_to image_tag('place.jpg',class: "img-thumbnail"), artist, remote: true
+

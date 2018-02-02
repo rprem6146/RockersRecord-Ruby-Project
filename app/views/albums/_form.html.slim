@@ -1,0 +1,26 @@
+= form_for @album, html: { class: "form form-horizontal album" } do |f|
+  .form-group
+    = f.label :name, class: 'control-label col-lg-2'
+    .col-lg-10
+      = f.text_field :name, class: 'form-control'
+      = f.error_span(:name)
+  .form-group
+    = f.label :cover_art, class: 'control-label col-lg-2'
+    .col-lg-10
+      = f.text_field :cover_art, class: 'form-control'
+      = f.error_span(:cover_art)
+  .form-group
+    = f.label :publisher_id, class: 'control-label col-lg-2'
+    .col-lg-10
+      = f.text_field :publisher_id, class: 'form-control'
+      = f.error_span(:publisher_id)
+  .form-group
+    = f.label :released_on, class: 'control-label col-lg-2'
+    .col-lg-10
+      = f.text_field :released_on, class: 'form-control'
+      = f.error_span(:released_on)
+  hr
+  .form-group
+    .col-lg-offset-2.col-lg-10
+      => f.submit nil, class: 'btn btn-primary'
+      = link_to 'Cancel', albums_path, class: 'btn'

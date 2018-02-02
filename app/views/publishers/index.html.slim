@@ -1,0 +1,24 @@
+.page-header
+  h1.color
+    .pull-right
+      = link_to "New", new_publisher_path, class: 'btn btn-primary'
+    | Publishers
+  
+table.table.table-striped
+  thead
+    tr
+      th name
+      th address
+      th city
+      th state
+      th zip
+      th phone
+  tbody
+    - @publishers.each do |publisher|
+      tr
+        td= link_to publisher.name, publisher
+        td= publisher.address
+        td= publisher.city
+        td= publisher.state
+        td= publisher.zip
+        td= publisher.phone

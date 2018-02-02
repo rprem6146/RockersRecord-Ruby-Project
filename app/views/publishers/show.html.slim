@@ -1,0 +1,41 @@
+.page-header
+  h1
+    .pull-right
+      = link_to 'Back', publishers_path, class: 'btn btn-default'
+      '
+      = link_to 'Edit', [:edit, @publisher], class: 'btn btn-default'
+      '
+      = link_to 'Delete', @publisher, method: "delete", data: { confirm: 'Are you sure?' }, class: 'btn btn-danger'
+    = @publisher.name
+
+dl.dl-horizontal
+  dt Name
+  dd= @publisher.name
+
+  dt Address
+  dd= @publisher.address
+
+  dt City
+  dd= @publisher.city
+
+  dt State
+  dd= @publisher.state
+
+  dt Zip
+  dd= @publisher.zip
+
+  dt Phone
+  dd= @publisher.phone
+
+  dt url
+  dd= @publisher.url
+
+hr
+
+= content_for :sidebar
+  .well.sidebar-nav.sidebar
+    h3 Albums
+    ul.list-inline
+      - @publisher.albums.each do |album|
+        li= link_to album do
+          img(src=album.cover_art style="width:50px")
